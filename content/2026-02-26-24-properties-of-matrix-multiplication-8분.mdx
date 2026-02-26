@@ -1,0 +1,92 @@
+---
+title: "24 Properties of Matrix Multiplication (8분)"
+date: "2026-02-26"
+---
+
+# 24 Properties of Matrix Multiplication (8분)
+
+- 아래 규칙들의 성립과 미성립의 본질적인 원인
+    
+    ```yaml
+    왜 발생하는가 :
+    
+    	"행과 열을 연산한다는 규칙에서 발생",
+    	"단순 '곱셈'이 아니기 때문에 발생 (성분들을 곱하고 더한다)",
+    	
+    
+    설명 :
+    A B C 가 있을 때
+    A의 row와 B의 col을 연산하는 규칙을 가지고 있다.
+    
+    matrix의 순서를 바꿔버리면, 무엇과 무엇이 연산되는지가 아예 바뀌어진다.
+    A의 row와 B의 col을 연산해야하는데,
+    B의 row와 A의 col을 연산하게됨.
+    
+    하지만,
+    무엇과 무엇이 연산되는지에 대한 정보만 바뀌지 않는다면,
+    Matrix연산에서 무엇부터 계산하던지는 결과에 영향을 주지 않는다.
+    
+    commutative는 해봤고,
+    다른 것들은 손으로 안 해봤지만 맞을 것 이다.
+    ```
+    
+- non commutative - 연산 순서 matters
+    
+    ```yaml
+    : "곱셈 순서 중요하다"
+    
+    왜 발생하는가 :
+    
+    	"행과 열을 연산한다는 규칙에서 발생",
+    	"단순 '곱셈'('무엇이 몇개')이 아니기 때문에 발생 (성분들을 곱하고 더한다)",
+    	"순서를 바꾸면 무엇을 무엇과 곱하고 더하여 결과를 내는지에 대한 수식이 아예 달라진다",
+    	"더 엄밀히 말하면 직접 연산하며 눈으로 보면 된다"
+    		예시 :
+    		
+    		A : 
+    			a b
+    			c d
+    		
+    		B : 
+    			a c
+    			b d
+    			
+    		A B : 
+    			[a^2 + b^2 , ac + bd]
+    			[ca + db , c^2 + d^2]
+    			
+    		B A :
+    			[a^2 + c^2 , ab + cb]
+    			[ab + cd , b^2 + d^2]
+    		
+    		일단 C11부터가 값이 다르다.
+    		늘리고 돌리고, 돌리고 늘리고 이런 이야기할 필요 없이,
+    		어떤 벡터를 어떤 함수와 연산하느냐의 차이 때문인듯하다.
+    		
+    		"다만, 행'렬' 이라는 시스템 체계에서 이렇게 순서를 바꿔도 값이 같을 순 있지 않나? 라는 질문은 남아있다"
+    		
+    ```
+    
+- distributive - scaling distribution 순서 does not matter
+    
+    ```yaml
+    : "다 더한 뒤 곱하나, 각각 곱하여서 더하나 같다"
+    
+    as long as... 모든 원소들에 같은 scaling을 해준다면.
+    ```
+    
+- associative - grouping 순서 does not matter
+    
+    ```yaml
+    : "총 시스템의 연산 순서만 같다면 무엇을 먼저 연산하던 상관없다"
+    
+    예 : (A×B)×C=A×(B×C)
+    
+    How is this different from the commutative property? :
+    
+    무엇의 row와 column을 연산하는 순서가 변형되었느냐, 변형되지 않았느냐의 차이.
+    
+    commutative : A의 row와 B의 column을 연산한다 (곱한뒤 더한다), 이 대상이 아예 바뀐다.
+    associative : 여전히 같은 위치의 것들이 곱해고 더해지고 있다.
+    
+    ```

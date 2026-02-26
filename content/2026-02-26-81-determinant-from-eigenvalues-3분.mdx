@@ -1,0 +1,34 @@
+---
+title: "81 Determinant From Eigenvalues (3분)"
+date: "2026-02-26"
+---
+
+# 81 Determinant From Eigenvalues (3분)
+
+```yaml
+A의 eigenvalue를 활용, det(A)의 효과적인 계산을 도모한다.
+
+핵심 원리 :
+- det는 scale의 변화지표 (area, volume)
+- egienvector = 증폭률
+
+- det (XY) = det (X) * det (Y) (증폭 비율 * 증폭 비율임을 대략적으로 이해해볼 수 있다)
+
+간단 계산 :
+- det(A) = det(V * Lambda * V⁻¹)
+- det(V⁻¹) = 1 / det(V)이므로, det(V) × det(V⁻¹) = 1 (invertibility효과)
+
+-> det(A) = det(Lambda)
+
+대각행렬에 대해 행렬식을 계산하면, 주대각선 상의 모든 원소를 곱한 값과 동일함
+
+det(Lambda) = λ₁ × λ₂ × … × λₙ
+
+why :
+
+	det = 증폭비율, lamda = 각 차원방향으로의 증폭률
+	
+	lamda * I 를 생각하면 이해가쉽다.
+	
+	det = I를 증폭하는 비율
+```

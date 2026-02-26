@@ -1,0 +1,203 @@
+---
+title: "47 Determinants (pt 1)"
+date: "2026-02-26"
+---
+
+# 47 Determinants (pt 1)
+
+```yaml
+Determinant :
+
+	- 2x2 matrix에서 ad - bc한 값
+	
+	- 여기서 ad는 “대각선 아래쪽 원소들의 곱” (down product)이고, 
+	bc는 “대각선 위쪽 원소들의 곱” (up product)입니다. 이 두 곱의 차이가 행렬식의 값이 됩니다.
+
+		주대각선(main diagonal): 왼쪽 위에서 오른쪽 아래로 가는 대각선 (a에서 d를 잇는 대각선)
+		반대각선(counter diagonal): 오른쪽 위에서 왼쪽 아래로 가는 대각선 (b에서 c를 잇는 대각선)
+		
+특징 :
+
+- scalar
+- matrix에 대한 다양한 성질을 보여준다
+```
+
+```yaml
+다양한 성질 1 :
+	
+	- matrix의 invertibility 판단 :
+	
+		A^1 = 1 / ad - bc  (-d b)
+											 (-c a)
+											 
+		라는 식에서, ad - bc가 0이면, matrix는 singular 하다.
+		
+		ad - bc = 0의 의미는 ? :
+			
+			vector가 하나의 equation으로 겹침.
+			차원의 축소.
+			추가적인 차원 정보를 나타낼 수 없음.
+			2차원에서 가로 1개 세로 1개가 나와야 하는데,
+			가로든 세로든 정보하나가 손실된 상태.							
+```
+
+```yaml
+다양한 성질 2 :
+	
+	- Algebraic Meaning :
+
+	연립 선형 방정식과의 관계:
+	
+	선형 방정식 AX = B의 해를 구할 때, A의 역행렬을 사용함. 
+	
+	만약 determinant가 0이면 A는 singular matrix가 되어 역행렬이 존재하지 않으므로, 
+	해가 유일하게 결정되지 않거나 아예 존재하지 않을 수 있다.
+	
+
+	1. 선형 방정식 AX = B 가 뭐지? :
+		
+		2x + 3y = 5
+		4x + 5y = 6
+		
+		행렬로 표현하면:
+		
+		A = [2 3]    X = [x]    B = [5]
+		    [4 5]        [y]        [6]
+		
+		벡터 행렬 곱하기가 :
+		
+		2x, 3y
+		4x, 5y
+		이렇게 되니까,
+		
+		따라서 AX = B는:
+		
+		[2 3] [x] = [5]
+		[4 5] [y]   [6]
+		
+	2. 이것의 답을 Gaussian Elimination이 아닌 Inverse Matrix로 구한다고 ? :
+	
+		AX = B
+		
+		A⁻¹(AX) = A⁻¹B
+		
+		(A⁻¹A)X = A⁻¹B
+		
+		IX = A⁻¹B  (A⁻¹A = I, 단위행렬)
+		
+		X = A⁻¹B
+		
+		예시 :
+		
+		2x + 3y = 5
+		4x + 5y = 6
+		
+		A = [2 3]    X = [x]    B = [5]
+		    [4 5]        [y]        [6]
+			
+			1) 먼저 A의 행렬식을 구합니다:
+			
+			det(A) = (2×5) - (3×4) = 10 - 12 = -2 ≠ 0
+			(행렬식이 0이 아니므로 역행렬이 존재합니다)
+		
+			2) A의 역행렬을 구합니다:
+			
+			A⁻¹ = 1/det(A) × [d -b]
+			                 [-c a]
+			     = 1/-2 × [5 -3]
+			              [-4 2]
+			     = [-5/2 3/2]
+			        [2 -1]
+		
+			3) X = A⁻¹B를 계산합니다:
+			
+			[-5/2 3/2] [5] = [-5/2×5 + 3/2×6]
+			[2 -1]     [6]   [2×5 + (-1)×6]
+			                = [1]
+			                  [4]
+	
+	3. Inverse Matrix가 없으면 Equation System을 풀 수 없는 상태가 됨 :
+	
+	다른말로 matrix가 singular하면, inverse matrix도 없고, equation solve도
+	못함.
+	
+	Inverse Matrix의 의미를 알면 풀 수도?
+	Inverse matrix는
+```
+
+```yaml
+잠시 그런데 어떤 더 구체적인 Inverse Matrix의 메커니즘 때문에 system solving이 되는 걸까? :
+** 추론모델이나 수학모델에게 풀어보도록 해도 좋을 듯 하다.
+** 일단 inverse matrix를 통하여 equation을 solve하는 task를 주고, 어떠한 더 구체적인 메커니즘으로 인하여
+dequation system을 풀 수 있었는지를 스스로 논리적으로 추적하도록 해보는 것이다.
+```
+
+```yaml
+Linear System of Equations와 Slope의 관계 :
+
+	1. 두 linear equation의 slope가 같으면 solution이 없거나 solution이 무한함 :
+
+			없는 경우 - line이 평행
+			무한한 경우 - 같은 line
+
+			이럴 때, Det = 0
+	
+	2. 왜 Det = 0이면 Slope가 겹치는가 ?
+	
+		직선 1: Ax + By = C  →  y = (-A/B)x + (C/B)
+		직선 2: Kx + Ly = D  →  y = (-K/L)x + (D/L)
+		
+		중요한 것은 각각의 slope 는
+			
+		(-A/B)
+		(-K/L)
+		
+		Matrix A 는 
+
+		 [A B]
+     [K L]
+     
+     Det는
+	    
+	    det(A) = AL - BK
+		
+		det가 0이라면
+	
+			AL - BK = 0
+			AL = BK
+			
+			A/B = K/L
+			
+			즉 slope는 같다
+```
+
+```yaml
+어째서, 더 구체적인 위에 대한 증명, mechanism은 어떻게 되는 것 일까?
+기호를 이리저리 옮겨다니면 slope도 되고, det도 되지만,
+이들이 어떤식으로 연결되어있을까 하나의 시스템 체계에서?
+```
+
+```yaml
+Geometric Meaning of Determinant:
+
+	1. Determinant의 absolute value는, 2차원 공간에서 area의 공간 변화의 계수를 알려줌.
+	
+	2. determinant의 부호는 선형 변환이 **공간의 방향(orientation)**을 보존하는지(양의 부호) 
+	혹은 반전시키는지(음의 부호)를 나타냄.
+
+- 언어 의미적 Mechanism :
+	
+	단위 벡터들 i hat, j hat으로 만들어진 1 x 1 사각형과
+	transformation을 통해 만들어진 사각형과의 Area의 크기를 비교.
+	Scale factor와 +-부호로 orientation 변환의 정도를 파악.
+	
+	사각형을 이루는 4개의 꼭지점은 :
+		1. origin
+		2. vector 1
+		3. vector 2
+		4. linear combination of vector 1 and 2
+	
+	
+- 수학적 Mechanism :
+
+```

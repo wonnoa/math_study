@@ -1,0 +1,677 @@
+---
+title: "15 Dot Product (16분)"
+date: "2026-02-26"
+---
+
+# 15 Dot Product (16분)
+
+원래 벡터라는 것이 물리학에서 유래되었다고 한다.
+그리고 수학은 이것을 초 고차원까지 확장하는 것.
+
+*** dot product 연산 방식이 도출되는 원래의 의미
+
+
+- Dot product 개념
+    
+    ```yaml
+    **"같은 차원의 대응되는 성분들을 곱하고 더한다"**
+    
+    1. 공식 :
+    
+    a·b = |a||b|cos(θ)
+    
+    1-1. 메커니즘 :
+    		
+    		|a|     = √(a₁² + a₂² + ... + aₙ²) (norm = 직각 삼각형 대각선 길이)
+    		|b|     = √(b₁² + b₂² + ... + bₙ²) (norm = 직각 삼각형 대각선 길이)
+    		cos(θ)
+    
+    2. 유용성 :
+    
+    Vector A와 Vector B의
+    
+    	1) 방향유사성 측정
+    		- 얼마나 같은 방향을 가리키는지
+    		
+    	2) 벡터의 분해
+    		- 한 벡터를 다른 벡터의 방향으로 얼마만큼 분해할 수 있는가
+    	를 측정하는 도구.
+    
+    3. Scalar로 결과가 나온다 :
+    
+    Vector A와 B를 곱하면, 방향정보가 손실된다.
+    벡터의 각각의 축의 값들을 곱한뒤, 이들을 새로운 벡터값으로 남겨두는 것이 아니라,
+    그것들을 그냥 "더해버리기" 때문이다.
+    
+    4. Vector 와 Vector를 곱하는 것의 진정한 의미 :
+    
+    그냥 단순 x값 y값들을 곱해서 더한다고 한다면.. 굳이 벡터라고 표현해야할까 싶다..
+    ```
+    
+    Dot product가 어떻게 방향 유사성을 알려주는가?
+    
+    ```yaml
+    1. dot product가 방향 유사성을 알려주는 방법 :
+    	
+    	"각 벡터의 길이와 사이 각도를 통해 방향성을 측정할 수 있다"
+    		- 만약 이것을 "자연 현상"으로 있는 그대로 받아들일 수 있는 용기가 있다면.
+    	
+    	- 각 성분끼리 더하여 만들어지는 최종적인 "직각삼각형"과 관련있다.
+    		무슨말? :
+    			x 곱하기 x, y 곱하기 y 하면 결국 최종적으로 x,y 좌표 얻는데.. 그것이 만들어지는 직각 삼각형이..
+    			결론을 주는 것인가?
+    		
+    	- 어쩔 수 없다.. 수학이, 물리적 현실에서 도출된 것이라서, 결국 수학은 물리적 현실로 회귀할 수 밖에.
+    		수학자들도 지독한 "현실 / 인식론자들 이였나보다" :
+    			- 인간의 인지의 한계에 대해서 생각 안한사람들 아닌가보다. 그러니까 우리가 3차원 밖에 인식 못한다고 이야기한거지,
+    			실상은 dimension이 더 존재할 수도 있는데. 우리 눈이 얼굴에 그냥 딱 달려가지고...
+    			
+    		양수일경우 : 두 벡터는 비슷한 방향
+    		0일경우 : 두 벡터는 수직, (orthogonality)
+    		음수일경우 : 두 벡터가 반대 방향
+    		
+    	- 내적값의 크기 : 얼마나 같은 방향인지의 정도
+    	
+- Dot product 계산 방법 2가지
+    
+    ```yaml
+    방법론 1. component끼리 곱해서 더하는 것 :
+    
+    **v1** = [x1,y1]
+    **v2** = [x2,y2]
+    
+    일 때,
+    
+    v1 x v2 = (x1 x x2) + (y1 x y2)
+    
+    **== Scalar 값 나옴**
+    
+    방법론 2. 두 벡터의 방향 유사도를 고려한 크기들의 곱 :
+    
+    dot_product:
+    
+    x·y = |x||y|cos(θ)
+      
+      components:
+        magnitude_x: 
+          symbol: "|x|"
+          calculation: "√(x₁² + x₂² + ... + xₙ²)"
+          meaning: "벡터 x의 크기"
+          
+        magnitude_y:
+          symbol: "|y|"
+          calculation: "√(y₁² + y₂² + ... + yₙ²)"
+          meaning: "벡터 y의 크기"
+          
+        angle:
+          symbol: "θ"
+          range: "0° ≤ θ ≤ 180°"
+          meaning: "두 벡터 사이의 각도"
+          
+        cosine:
+          special_values:
+            same_direction: 
+              angle: "0°"
+              value: "cos(0°) = 1"
+              meaning: "두 벡터가 같은 방향"
+            
+            perpendicular:
+              angle: "90°"
+              value: "cos(90°) = 0"
+              meaning: "두 벡터가 수직"
+              
+            opposite_direction:
+              angle: "180°"
+              value: "cos(180°) = -1"
+              meaning: "두 벡터가 반대 방향"
+    
+      geometric_interpretation: "두 벡터가 같은 방향을 향하는 정도를 측정"
+    ```
+
+=================
+        
+- dot product에 대한 나의 기존의 오해
+    
+    ```yaml
+    변환관점에서 생각했었다.
+    
+    gpt가 말하길,
+    dot product와 matrix multiplication을 혼동하지 말라고 한다..
+    ```
+    
+    ![스크린샷 2025-03-14 오후 4.54.10.png](15%20Dot%20Product%20(16%E1%84%87%E1%85%AE%E1%86%AB)%20191029fe18a4802fb6e2ceae686eeeac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-03-14_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.54.10.png)
+    
+    ![스크린샷 2025-03-14 오후 4.54.23.png](15%20Dot%20Product%20(16%E1%84%87%E1%85%AE%E1%86%AB)%20191029fe18a4802fb6e2ceae686eeeac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-03-14_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.54.23.png)
+    
+    ![스크린샷 2025-03-14 오후 4.53.54.png](15%20Dot%20Product%20(16%E1%84%87%E1%85%AE%E1%86%AB)%20191029fe18a4802fb6e2ceae686eeeac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-03-14_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.53.54.png)
+    
+- dot product 시각화 interactive code
+    
+    ```html
+    import React, { useState, useEffect } from 'react';
+    import { ArrowRight, ArrowLeft } from 'lucide-react';
+    
+    const DotProductVisualization = () => {
+      // 벡터 A와 B의 크기와 각도에 대한 상태 관리
+      const [vectorA, setVectorA] = useState({ magnitude: 5, angle: 0 });
+      const [vectorB, setVectorB] = useState({ magnitude: 4, angle: 45 });
+      
+      // 계산된 값들
+      const [dotProduct, setDotProduct] = useState(0);
+      const [coordinates, setCoordinates] = useState({
+        a: { x: 0, y: 0 },
+        b: { x: 0, y: 0 },
+        projection: { x: 0, y: 0 }
+      });
+    
+      // 좌표계 설정
+      const svgSize = 400;
+      const center = svgSize / 2;
+      const scale = 20; // 스케일 조정
+    
+      // 벡터 좌표 및 점곱 계산
+      useEffect(() => {
+        // 라디안 변환
+        const angleAInRadians = (vectorA.angle * Math.PI) / 180;
+        const angleBInRadians = (vectorB.angle * Math.PI) / 180;
+        
+        // 벡터 A의 좌표 계산
+        const aX = vectorA.magnitude * Math.cos(angleAInRadians);
+        const aY = -vectorA.magnitude * Math.sin(angleAInRadians); // SVG에서 Y축은 아래로 증가
+        
+        // 벡터 B의 좌표 계산
+        const bX = vectorB.magnitude * Math.cos(angleBInRadians);
+        const bY = -vectorB.magnitude * Math.sin(angleBInRadians);
+        
+        // 두 벡터 사이의 각도 계산 (라디안)
+        const angleBetweenVectors = angleBInRadians - angleAInRadians;
+        
+        // 점곱 계산: |A| * |B| * cos(θ)
+        const dotProductValue = 
+          vectorA.magnitude * 
+          vectorB.magnitude * 
+          Math.cos(angleBetweenVectors);
+        
+        // 벡터 A에 대한 벡터 B의 투영 계산
+        const projectionMagnitude = 
+          vectorB.magnitude * Math.cos(angleBetweenVectors);
+        const projectionX = projectionMagnitude * Math.cos(angleAInRadians);
+        const projectionY = -projectionMagnitude * Math.sin(angleAInRadians);
+        
+        setDotProduct(dotProductValue.toFixed(2));
+        setCoordinates({
+          a: { x: aX, y: aY },
+          b: { x: bX, y: bY },
+          projection: { x: projectionX, y: projectionY }
+        });
+      }, [vectorA, vectorB]);
+    
+      return (
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto p-4 space-y-8">
+          <h2 className="text-2xl font-bold text-center">
+            점곱(Dot Product) 시각화: A·B = |A| |B| cos(θ)
+          </h2>
+          
+          <div className="flex flex-col md:flex-row w-full justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-4">컨트롤</h3>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  벡터 A 크기: {vectorA.magnitude}
+                </label>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="0.1"
+                  value={vectorA.magnitude}
+                  onChange={(e) => setVectorA({ ...vectorA, magnitude: parseFloat(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  벡터 A 각도: {vectorA.angle}°
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="359"
+                  step="1"
+                  value={vectorA.angle}
+                  onChange={(e) => setVectorA({ ...vectorA, angle: parseInt(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  벡터 B 크기: {vectorB.magnitude}
+                </label>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="0.1"
+                  value={vectorB.magnitude}
+                  onChange={(e) => setVectorB({ ...vectorB, magnitude: parseFloat(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  벡터 B 각도: {vectorB.angle}°
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="359"
+                  step="1"
+                  value={vectorB.angle}
+                  onChange={(e) => setVectorB({ ...vectorB, angle: parseInt(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="p-4 bg-white rounded-lg border border-gray-200">
+                <h4 className="font-semibold mb-2">결과</h4>
+                <p>
+                  점곱 A·B = {dotProduct}
+                </p>
+                <p className="text-sm mt-2">
+                  = |A| |B| cos(θ)
+                </p>
+                <p className="text-sm">
+                  = {vectorA.magnitude} × {vectorB.magnitude} × cos({Math.abs(vectorB.angle - vectorA.angle)}°)
+                </p>
+                <p className="mt-4 text-sm text-gray-600">
+                  {Math.abs(vectorB.angle - vectorA.angle) === 90 
+                    ? "벡터 A와 B는 서로 수직입니다 (cos(90°) = 0)"
+                    : Math.abs(vectorB.angle - vectorA.angle) === 0 || Math.abs(vectorB.angle - vectorA.angle) === 360
+                      ? "벡터 A와 B는 같은 방향입니다 (cos(0°) = 1)"
+                      : Math.abs(vectorB.angle - vectorA.angle) === 180
+                        ? "벡터 A와 B는 반대 방향입니다 (cos(180°) = -1)"
+                        : ""}
+                </p>
+              </div>
+            </div>
+            
+            <div className="w-full md:w-1/2 bg-white p-4 rounded-lg border border-gray-200">
+              <svg 
+                width={svgSize} 
+                height={svgSize} 
+                viewBox={`0 0 ${svgSize} ${svgSize}`}
+                className="bg-gray-50 rounded-lg"
+              >
+                {/* 좌표축 */}
+                <line
+                  x1="0"
+                  y1={center}
+                  x2={svgSize}
+                  y2={center}
+                  stroke="#888888"
+                  strokeWidth="1"
+                  strokeDasharray="4"
+                />
+                <line
+                  x1={center}
+                  y1="0"
+                  x2={center}
+                  y2={svgSize}
+                  stroke="#888888"
+                  strokeWidth="1"
+                  strokeDasharray="4"
+                />
+                
+                {/* x축 라벨 */}
+                <text x={svgSize - 20} y={center + 20} fontSize="12" fill="#888888">x</text>
+                
+                {/* y축 라벨 */}
+                <text x={center + 10} y="20" fontSize="12" fill="#888888">y</text>
+                
+                {/* 투영선 (점선) */}
+                <line
+                  x1={center}
+                  y1={center}
+                  x2={center + coordinates.projection.x * scale}
+                  y2={center + coordinates.projection.y * scale}
+                  stroke="#888888"
+                  strokeWidth="2"
+                  strokeDasharray="4"
+                />
+                
+                {/* 투영 끝에서 벡터 B까지의 수직선 */}
+                <line
+                  x1={center + coordinates.projection.x * scale}
+                  y1={center + coordinates.projection.y * scale}
+                  x2={center + coordinates.b.x * scale}
+                  y2={center + coordinates.b.y * scale}
+                  stroke="#888888"
+                  strokeWidth="1"
+                  strokeDasharray="4"
+                />
+                
+                {/* 벡터 A */}
+                <line
+                  x1={center}
+                  y1={center}
+                  x2={center + coordinates.a.x * scale}
+                  y2={center + coordinates.a.y * scale}
+                  stroke="#3B82F6" // 파란색
+                  strokeWidth="3"
+                />
+                
+                {/* 벡터 A 화살표 */}
+                <circle
+                  cx={center + coordinates.a.x * scale}
+                  cy={center + coordinates.a.y * scale}
+                  r="5"
+                  fill="#3B82F6"
+                />
+                
+                {/* 벡터 A 라벨 */}
+                <text
+                  x={center + coordinates.a.x * scale + 10}
+                  y={center + coordinates.a.y * scale - 10}
+                  fontSize="16"
+                  fill="#3B82F6"
+                  fontWeight="bold"
+                >
+                  A
+                </text>
+                
+                {/* 벡터 B */}
+                <line
+                  x1={center}
+                  y1={center}
+                  x2={center + coordinates.b.x * scale}
+                  y2={center + coordinates.b.y * scale}
+                  stroke="#EF4444" // 빨간색
+                  strokeWidth="3"
+                />
+                
+                {/* 벡터 B 화살표 */}
+                <circle
+                  cx={center + coordinates.b.x * scale}
+                  cy={center + coordinates.b.y * scale}
+                  r="5"
+                  fill="#EF4444"
+                />
+                
+                {/* 벡터 B 라벨 */}
+                <text
+                  x={center + coordinates.b.x * scale + 10}
+                  y={center + coordinates.b.y * scale - 10}
+                  fontSize="16"
+                  fill="#EF4444"
+                  fontWeight="bold"
+                >
+                  B
+                </text>
+                
+                {/* 각도 호 */}
+                <path
+                  d={`M ${center + 30 * Math.cos(vectorA.angle * Math.PI / 180)} ${center - 30 * Math.sin(vectorA.angle * Math.PI / 180)} A 30 30 0 ${Math.abs(vectorB.angle - vectorA.angle) > 180 ? 1 : 0} 1 ${center + 30 * Math.cos(vectorB.angle * Math.PI / 180)} ${center - 30 * Math.sin(vectorB.angle * Math.PI / 180)}`}
+                  fill="none"
+                  stroke="#888888"
+                  strokeWidth="2"
+                />
+                
+                {/* 각도 라벨 */}
+                <text
+                  x={center + 45 * Math.cos(((vectorA.angle + vectorB.angle) / 2) * Math.PI / 180)}
+                  y={center - 45 * Math.sin(((vectorA.angle + vectorB.angle) / 2) * Math.PI / 180)}
+                  fontSize="14"
+                  fill="#888888"
+                >
+                  θ
+                </text>
+              </svg>
+              
+              <div className="mt-4 text-sm">
+                <div className="flex items-center mb-2">
+                  <div className="w-4 h-4 bg-blue-500 mr-2"></div>
+                  <span>벡터 A: ({coordinates.a.x.toFixed(2)}, {coordinates.a.y.toFixed(2)})</span>
+                </div>
+                <div className="flex items-center mb-2">
+                  <div className="w-4 h-4 bg-red-500 mr-2"></div>
+                  <span>벡터 B: ({coordinates.b.x.toFixed(2)}, {coordinates.b.y.toFixed(2)})</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-gray-400 mr-2"></div>
+                  <span>B의 A에 대한 투영: {coordinates.projection.x.toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="w-full bg-gray-100 p-4 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">점곱의 의미</h3>
+            <p className="mb-2">
+              두 벡터 A와 B의 점곱은 벡터 A의 방향으로 투영된 벡터 B의 길이와 벡터 A의 길이의 곱과 같습니다.
+            </p>
+            <p className="mb-2">
+              점곱이 0이면 두 벡터는 서로 수직(orthogonal)입니다.
+            </p>
+            <p className="mb-2">
+              점곱이 양수이면 두 벡터는 같은 방향을 향하고 있으며, 점곱이 음수이면 반대 방향을 향하고 있습니다.
+            </p>
+            <p>
+              슬라이더를 조절하면서 벡터의 크기와 각도에 따라 점곱이 어떻게 변하는지 관찰해 보세요.
+            </p>
+          </div>
+        </div>
+      );
+    };
+    
+    export default DotProductVisualization;
+    ```
+    
+
+    
+- Financial Portfolio 예시
+    
+    ```yaml
+    투자한다.
+    2개의 벡터로 정보를 나타낸다.
+    W는 종목별로 얼마나 투자하는지, R는 각각의 수익률.
+    W와 R을 곱해버리면, 총 수익률을 알 수 있다.
+    
+    W = 종목별 투자 비율
+    R = 수익률
+    
+    W = [0.5, 0.3, 0.2]
+    R = [0.1, 0.05, 0.15]
+    
+    **전체 수익률 0.065
+    
+    그냥, 각 종목별로 수익률을 곱한다음에, 이것들을 더한 것이다.
+    글쎄.. 공간정보를 포함할 수 있다는 벡터의 성질을 100% 잘 활용한 것은 아닌 것 같다..**
+    
+    Scalar값을 얻었고, 방향정보는 잃어버렸다.
+    ```
+    
+- Orthognality
+    
+    ```yaml
+    * 중요하다고 한다
+    
+    orthognality :
+    
+    두 벡터사이의 각도가 90도
+    
+    의미 :
+    	- 하나의 변수가 변화할 때, 다른 변수가 단 1도 변화하지 않는다.
+    	
+    	예 :	
+    	vector x (3,0) 
+    	vector y (0,2)
+    	둘이 아무리 곱해봐라, 다른것이 변하나.
+    	
+    	- 이것이 진행되는 직선간의 90도각도를 만들어낸다.	
+    		* 좀 뻔하다. 관계 없는 애들이 시각적으로 보여지는 것이 90도 각도를 만들어 내는 것이고, 우리는 그것을 정의하였고,
+    		우리는 역추적해서 90도면 서로 관계없다 라는 사실을 "도출해낸다고 착각하고 있다"
+    		* 마치, 원래 그런게 그런거다 하고 있는 것.
+    		
+    	- 반대 방향이면 서로 간섭이라도 한다.
+    	
+    orthognality를 시각적이 아니라 수학적으로 이해하려면 "각도"에 대한 심오한 이해가 필요할 듯 :
+    
+    결국 내가 궁금한 것은, 왜 90도 이면 서로 간섭하지 않느냐 이겠다..
+    간섭하지 않는것이 90도라서 인지, 아니면 90도의 특성이 존재하는 것인지
+    
+    ```
+    
+    ![스크린샷 2025-02-10 오전 2.35.29.png](15%20Dot%20Product%20(16%E1%84%87%E1%85%AE%E1%86%AB)%20191029fe18a4802fb6e2ceae686eeeac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_2.35.29.png)
+
+
+ ```
+    
+    - React Code
+        
+        ```yaml
+        import React, { useState, useRef, useEffect } from 'react';
+        
+        const VectorExplorer = () => {
+          const [vectorA, setVectorA] = useState({ x: 3, y: 0 });
+          const [vectorB, setVectorB] = useState({ x: 2, y: 2 });
+          const svgRef = useRef();
+        
+          // 계산 함수들
+          const getMagnitude = (v) => Math.sqrt(v.x * v.x + v.y * v.y);
+          const getDotProduct = (a, b) => a.x * b.x + a.y * b.y;
+          const getAngle = (a, b) => {
+            const dot = getDotProduct(a, b);
+            const mags = getMagnitude(a) * getMagnitude(b);
+            return Math.acos(dot / mags) * 180 / Math.PI;
+          };
+        
+          // 마우스 드래그로 벡터 조절
+          const handleMouseMove = (e, vectorSetter) => {
+            const svg = svgRef.current;
+            const rect = svg.getBoundingClientRect();
+            const scale = 40; // 시각화 스케일
+            
+            // SVG 좌표계로 변환
+            const x = (e.clientX - rect.left - rect.width/2) / scale;
+            const y = -(e.clientY - rect.top - rect.height/2) / scale;
+            
+            vectorSetter({ x: Number(x.toFixed(2)), y: Number(y.toFixed(2)) });
+          };
+        
+          return (
+            <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow">
+              <svg 
+                ref={svgRef}
+                width="400" 
+                height="400" 
+                viewBox="-200 -200 400 400"
+                className="border border-gray-200"
+              >
+                {/* 격자 */}
+                <defs>
+                  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#eee" strokeWidth="1"/>
+                  </pattern>
+                </defs>
+                <rect x="-200" y="-200" width="400" height="400" fill="url(#grid)" />
+        
+                {/* 좌표축 */}
+                <line x1="-200" y1="0" x2="200" y2="0" stroke="#ccc" strokeWidth="1"/>
+                <line x1="0" y1="-200" x2="0" y2="200" stroke="#ccc" strokeWidth="1"/>
+        
+                {/* 벡터 A */}
+                <line
+                  x1="0" y1="0"
+                  x2={vectorA.x * 40} y2={-vectorA.y * 40}
+                  stroke="blue"
+                  strokeWidth="2"
+                  markerEnd="url(#arrowhead)"
+                  onMouseDown={(e) => {
+                    const moveHandler = (e) => handleMouseMove(e, setVectorA);
+                    document.addEventListener('mousemove', moveHandler);
+                    document.addEventListener('mouseup', () => {
+                      document.removeEventListener('mousemove', moveHandler);
+                    }, { once: true });
+                  }}
+                  style={{ cursor: 'move' }}
+                />
+        
+                {/* 벡터 B */}
+                <line
+                  x1="0" y1="0"
+                  x2={vectorB.x * 40} y2={-vectorB.y * 40}
+                  stroke="red"
+                  strokeWidth="2"
+                  markerEnd="url(#arrowhead)"
+                  onMouseDown={(e) => {
+                    const moveHandler = (e) => handleMouseMove(e, setVectorB);
+                    document.addEventListener('mousemove', moveHandler);
+                    document.addEventListener('mouseup', () => {
+                      document.removeEventListener('mousemove', moveHandler);
+                    }, { once: true });
+                  }}
+                  style={{ cursor: 'move' }}
+                />
+        
+                {/* 각도 표시 */}
+                <path
+                  d={`M 30 0 A 30 30 0 0 0 ${30 * Math.cos(getAngle(vectorA, vectorB) * Math.PI / 180)} ${-30 * Math.sin(getAngle(vectorA, vectorB) * Math.PI / 180)}`}
+                  fill="none"
+                  stroke="#666"
+                  strokeWidth="1"
+                />
+        
+                {/* 화살표 마커 */}
+                <defs>
+                  <marker
+                    id="arrowhead"
+                    markerWidth="10"
+                    markerHeight="7"
+                    refX="9"
+                    refY="3.5"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+                  </marker>
+                </defs>
+              </svg>
+        
+              <div className="mt-4 space-y-2 text-sm font-mono">
+                <div className="text-blue-500">
+                  벡터 A: ({vectorA.x}, {vectorA.y})
+                  |A| = {getMagnitude(vectorA).toFixed(2)}
+                </div>
+                <div className="text-red-500">
+                  벡터 B: ({vectorB.x}, {vectorB.y})
+                  |B| = {getMagnitude(vectorB).toFixed(2)}
+                </div>
+                <div>
+                  x성분 곱: {(vectorA.x * vectorB.x).toFixed(2)}
+                </div>
+                <div>
+                  y성분 곱: {(vectorA.y * vectorB.y).toFixed(2)}
+                </div>
+                <div className="font-bold">
+                  Dot Product: {getDotProduct(vectorA, vectorB).toFixed(2)}
+                </div>
+                <div>
+                  각도 θ: {getAngle(vectorA, vectorB).toFixed(2)}°
+                </div>
+                <div>
+                  |A||B|cos(θ): {(getMagnitude(vectorA) * getMagnitude(vectorB) * Math.cos(getAngle(vectorA, vectorB) * Math.PI / 180)).toFixed(2)}
+                </div>
+              </div>
+            </div>
+          );
+        };
+        
+        export default VectorExplorer;
+        ```
+        
+    - AI와 놀기
+        
+        ![스크린샷 2025-02-10 오전 2.48.36.png](15%20Dot%20Product%20(16%E1%84%87%E1%85%AE%E1%86%AB)%20191029fe18a4802fb6e2ceae686eeeac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-10_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_2.48.36.png)

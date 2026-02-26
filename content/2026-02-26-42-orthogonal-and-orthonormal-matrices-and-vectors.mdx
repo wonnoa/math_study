@@ -1,0 +1,93 @@
+---
+title: "42 Orthogonal and Orthonormal Matrices and Vectors"
+date: "2026-02-26"
+---
+
+# 42 Orthogonal and Orthonormal Matrices and Vectors
+
+```yaml
+orthonormal :
+	ortho + normal
+	
+핵심 메커니즘 :
+		
+		1. 벡터의 모음이 matrix
+		2. transpose하여 A A^T한다는 것은, 벡터와 벡터 그 자신을 연산하는 행위
+		3. orthonormal 하다는 것은
+			나랑 나랑 연산하면 1 (관계성 1)
+			나랑 다른애랑 연산하면 0 (관계성 0)
+```
+
+```yaml
+orthogonal :
+
+	two vectors make up 90 degrees
+
+```
+
+```yaml
+inner product와의 관계를 생각 :
+	
+	inner product = projection.
+		
+		나에 나를 곱하면, 방향은 같고, scalar 증폭치 최대.
+		
+		나에 너를 곱하면, 방향이 틀려서 scalar 증폭치 0. (orthogonal한 경우)
+```
+
+```yaml
+orthogonal set :
+	
+	set of vectors that make up to 90 degrees to each one another.
+	
+	하지만 주의할 점은, 
+	이는 실제 물리적 공간에서의 설명이고, 
+	더 높은 차원이나 추상적인 벡터 공간에서는 "90도"라는 개념 대신 "내적이 0"이라는 수학적 정의를 사용.
+	결과적으로는 같은 의미이지만, 수학적으로는 내적이 0이라는 표현이 더 정확함.
+	
+	따라서,
+	서로 다른 임의의 두 벡터의 내적(dot product)이 0이어야 함.
+	
+
+데이터적 해석 :
+
+->> 그렇다면, 이 set of vectors 들은..
+하나의 변인의 변화가 다른 변인에게 아무런 영향을 주지 않는다고 이해할 수 있음.
+
+v1 = (0,0,5) v2 = (0,3,0) v3 = (2,0,0)
+
+세 벡터는 상호간에 orthogonal
+```
+
+```yaml
+Orthonormal Set :
+
+orthogonal set에 한가지 조건이 더 추가된다.
+
+	추가된 조건 : normalized 될 것. 각 벡터의 길이가 1일 것.
+	
+	x,y,z 축 외에도, 다양한 벡터의 조합으로 orthonormal set이 완성될 수 있다.
+	
+
+벡터는 각 축에 대한 정보를 담고 있다는 것이 핵심인데.. :
+	
+	길이가 1이고, 서로 영향주지 않는다면, 거의 그냥 하나의 "단위"로 봐도 되지 않을까 싶다.
+	basis
+```
+
+```yaml
+직교 집합이 중요한 이유 :
+
+벡터 공간의 기저(Base) 구성: 
+
+직교(또는 정규 직교) 벡터들은 벡터 공간의 기저를 구성할 때 계산이 매우 간편해집니다. 
+예를 들어, 좌표 변환, 투영, 분해 등의 연산에서 직교 기저를 사용하면 계산이 단순해집니다.
+
+행렬 및 기하학적 응용:
+
+나중에 직교 행렬 개념을 다룰 때, 행렬의 열(혹은 행)이 정규 직교 집합을 이룰 경우,
+그 행렬은 U^T U = I (항등행렬)을 만족하며, 이는 U^{-1} = U^T라는 유용한 성질로 이어집니다.
+
+통계 및 머신러닝: 
+데이터 분석, 차원 축소(PCA) 등에서도 직교성을 이용하면 변수들 간의 상관관계를 줄이고 독립적인 성분을 추출하는 데 도움이 됩니다.
+```

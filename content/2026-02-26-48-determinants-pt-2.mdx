@@ -1,0 +1,78 @@
+---
+title: "48 Determinants (pt 2)"
+date: "2026-02-26"
+---
+
+# 48 Determinants (pt 2)
+
+```yaml
+큰 행렬 (Larger Matrices)에서의 Determinant 계산 :
+
+	3x3, 4x4 ... 이상의 큰 matrix의 determinant 계산하는 법
+
+Laplace Expansion (Cofactor Expansion) :
+
+	(강의에서는 단순화하여 기계적으로 수행하는 방법만 다룸. 이론적 배경 다루지 않음.)
+
+	계산 방법 :
+	
+	  A = (
+	   a b c
+	   d e f
+	   g h i
+	  )
+	
+		Laplace Expansion 방식 선택 :
+	
+		여기서는 첫 번째 행을 기준으로 expansion을 진행.
+		첫 행의 각 원소 a, b, c에 대해 해당 원소가 포함된 행과 열을 제거한 submatrix의 determinant를 구한 뒤, 부호를 번갈아 적용.
+		부호 패턴은 +, −, + 순으로 적용.
+		
+		각 원소에 대한 submatrix 구하기 :
+	
+			a에 대한 submatrix (M₁₁):
+			a가 위치한 1행 1열을 제거하면 남는 submatrix는
+			(
+			   e f
+			   h i
+			)
+			
+			b에 대한 submatrix (M₁₂):
+			b가 위치한 1행 2열을 제거하면 남는 submatrix는
+			(
+			   d f
+			   g i
+			)
+	
+			c에 대한 submatrix (M₁₃):
+			c가 위치한 1행 3열을 제거하면 남는 submatrix는
+			(
+			   d e
+			   g h
+			)
+	
+			각 submatrix의 2×2 determinant 계산 :
+	
+				det(M₁₁):
+				= e·i − f·h
+				det(M₁₂):
+				= d·i − f·g
+				det(M₁₃):
+				= d·h − e·g
+	
+				Laplace Expansion 적용하여 3×3 matrix의 determinant 계산
+	
+			원소와 그것이 포함된 행렬을 제외한 matrix의 det를 곱한뒤 연산 :
+			
+			(여기서 각 det에 대한 부호가 +, - 순으로 적용됨)
+			- det(A) = a·det(M₁₁) - b·det(M₁₂) + c·det(M₁₃)
+	
+			ergo. :
+			
+			"det(A) = a·(e·i − f·h) - b·(d·i − f·g) + c·(d·h − e·g)"
+
+비고 :
+
+Laplace Expansion에서는 어떤 행이나 열을 기준으로 삼아도 되고, 결과는 동일.
+보통 계산을 간단하게 하기 위해 첫 행을 선택하지만, 0이 많은 행이나 열을 선택하여 계산을 쉽게하기도 함.
+```

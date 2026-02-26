@@ -1,0 +1,89 @@
+---
+title: "14 Adding and Subtracting Vectors (12분)"
+date: "2026-02-26"
+---
+
+# 14 Adding and Subtracting Vectors (12분)
+
+- 성분형식의 vector addition and subtraction
+    
+    ```yaml
+    벡터 x = (x₁, x₂, ..., xₙ)
+    벡터 y = (y₁, y₂, ..., yₙ)
+    
+    이때 덧셈은 각 성분끼리 더한다 :
+    x + y = (x₁+y₁, x₂+y₂, ..., xₙ+yₙ)
+    
+    ** 더하고자하는 벡터들의 차원의 수가 같아야 한다.
+    근데 없으면 없는대로 더해도 되지 않나 싶다.
+    더하고자 하는 차원의 "속성"만 같다면 말이다.
+    ```
+
+- 벡터를 더하고 뺌의 의미
+***
+    
+
+
+==========================
+
+- Polar Form and Calculation
+    
+    ```yaml
+    Polar Form이 뭐지? :
+    
+    	Polar Form = magnitude + theta 형식으로 표현한 것
+    ```
+    
+- Polar Form ↔ Component Form conversion
+    
+    ```yaml
+    성분형식 ↔ 크기/각도 형식 변환에 필요한 공식들:
+    
+    성분형식으로 변환할 때:
+    
+    x₁ = r × cos(θ)
+    x₂ = r × sin(θ)
+    
+    크기/각도 형식으로 변환할 때:
+    
+    r = √(x₁² + x₂²)  [피타고라스 정리]
+    θ = arctan(x₂/x₁)  [탄젠트의 역함수]
+    ```
+    
+- Vector의 공간에서의 효용
+    
+    ```yaml
+    물리에서 Vector는 진행방향과 크기를 예측하기 위해 사용되는 것 :
+    
+    Vector를 단순 좌표로만 보아서는 안될 듯.
+    Vector가 있다면 그것을 하나의 "최소 단위"라고 보아도 된다.
+    거기에 Scalar를 곱하면 해당 vector가 앞으로 어떤 방향으로, 얼마나 빠르게 진행할지를 예측할 수 있다.
+    
+    Vector의 차원을 더하면 정보가 더 생긴다 :
+    
+    활용법은 무궁무진해 보인다.
+    차원을 더할수록 어떤 정보를 어떻게 연산할지, 예측할지에 대한 정보가 합성된다.
+    ```
+    
+- 어째서 x와 y는 각각 “R cos theta (x축)” , “R sin theta (y축)” ??
+    
+    ```yaml
+    1. 단위원의 origin으로부터의 각도와 길이 비율 (sin, cos)
+    	
+    	unit circle = radius 1
+    	
+    	origin에서 정확히 length 1만큼 떨어져있다. 완전신기.
+    	
+    2. 이 때, 점 p가 주어지면 x, y좌표는 cos, sin theta.
+    	
+    	각도는 360도 체계안에서 주어진 변수들간의 관계의 결과라고 우리는 이해했잖아?
+    	
+    	우리는 360도 세상에 살고있다고 상정하고,
+    	x와 y... n 단위길이들의 각각의 변화가 이 원세상에서 어떠한 '각도'를 그리는지를
+    	나타내는 것 이다.
+    	
+    	이 때, length가 지속적으로 유지되려면 sin, cos 비율을 만족해야한다고한다.
+    	
+    	
+    3. 
+    ```

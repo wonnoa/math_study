@@ -1,0 +1,168 @@
+---
+title: "39 Properties of the Matrix Transpose (25분)"
+date: "2026-02-26"
+---
+
+# 39 Properties of the Matrix Transpose (25분)
+
+- 행렬 전치의 복습 및 기본 개념
+    
+    ```yaml
+    Transpose에 대한 내용 반복
+    ```
+    
+- 전치 성질 필요한 이유와 배경
+    
+    ```yaml
+    왜 성질을 알아야 하나 ? :
+    
+    여러 matrix가 결합되거나, 수식을 단순화하거나 재배열할 때 이러한 성질들을 활용한다.
+    ```
+    
+- 실전 응용 예제: 다변량 가우시안 식 단순화
+- Transpose의 기본 성질들 (Obvious Properties)
+    
+    ```yaml
+    1. Distributive Property over Addition :
+    
+    	설명 :
+    	두 같은 크기의 matrix 더할 때
+    	더한것을 transpose하나, transpose한 것을 더하나 같다.
+    	
+    	왜 되나 :
+    	
+    	matrix addition은 같은 자리의 element끼리 더함.
+    	dot product처럼 곱하고 더하는 것이 아니다.
+    	따라서, transpose하여도 같은 element들이 더해진다.
+    
+    2. Scalar Multiplication and the Transpose :
+    
+    	설명 :
+    	Scaling 하고 transpose하나, transpose한 것을 scaling하나 같다.
+    	
+    	왜 되나 :
+    	
+    	너무 당연하다.
+    	Scaling한다는 것은 matrix 그 자체의 모든 요소들에 상수만큼 곱하는 것.
+    	자리 바꿔서 곱하나, 곱한뒤 자리바꾸나
+    	모든 요소들이 x배 된다는 상황은 같다.
+    	
+    	왜 되나 2 :
+    	
+    	transpose 자체의 규칙 때문인 것 같다.
+    	transposing한다는 것은, 정보들이 표기되는 위치만 바꾼 것.
+    	연산할 때 동일한 것들만 연산된다면 정보가 바뀔 이유가 없다.
+    	
+    3. Double Transpose :
+    
+    	 설명 :
+    	 Transpose한 것을 다시 Transpose하여도 원래의 것이 된다.
+    	 
+    	 왜 되나 :
+    	 너무 당연한 것 같다..
+    	 행이 열 되었다가. 아무런 연산도 취하지 않고, 다시 열들을 행으로 되돌리니.
+    	 좀 더 깊이 파보면 더 논리적인 규칙이 나오겠지만 괜찮을 듯.
+    	 
+    
+    4. Distributive Property over Subtranction :
+    
+    	 설명 :
+    	 같은 크기의 matrix A - B를 할 때,
+    	 Transpose하고 빼도, 빼고 transpose해도 결과가 같다.
+    	
+    ```
+    
+- A^T A = symmetric
+    
+    ```yaml
+    뻔함.
+    2x2로 (abcd) 기호로 계산해보라.
+    ```
+    
+- Transpose에 대한 비자명한 성질들 (Non-obvious Properties)
+    
+    ```yaml
+    1. Matrix Product Transposition
+    
+    	: 곱해서 transpose한 것과, 각각 transpose 해서 곱한 최종 matrix C가 같다.
+    	
+    	이해 :
+    	
+    	실제로는 단순히 각각 transpose한 뒤 원래 순서대로 multiply하는 것과는 다름.
+    	
+    	Bt At로 뒤집어서 연산해야 하는 이유.
+    	
+    	우리는 행과 열을 transpose하였다.
+    	행렬 곱하기는 행과 열을 각각 곱한다.
+    	그대로 곱하면 위치가 변환된 요소들끼리 곱해질 수 있다. (A의 행과 B의 열)
+    	이러면 원하는 요소들끼리 곱해지지 않는다.
+    	
+    	따라서 B의 행과 A의 열이 곱해질 수 있도록 연산을 AB -> Bt At로 바꾼다.
+    	그러면 transposed된 상태의 최종 matrix를 얻을 수 있다.
+    	
+    	어차피 corresponding하는 요소들끼리 모두 곱한다음 최종 더하는 것이기 때문에,
+    	
+    	GPT가 계속 이야기하는
+    	"이렇게 하면 dot product의 특성(스칼라 곱셈의 교환법칙)에 의해 최종적으로 같은 값이 나온다,
+    라는 점이 모두 맞습니다."
+    	가 왜 발생하는지 이해할 수 있다.
+    	
+    	중요한 것은 :
+    	같은 요소들끼리 곱해서 더하면 문제 없다는 것.
+    	
+    	** 그런데 transpose한다는 것은 단순하게 보면 이 규칙을 성립하는데,
+    	또 의미적으로 생각해보면 정보의 주체가 swap되는 것이긴 하다.
+    	원래는 B가 원벡터, A가 
+    	
+    ```
+    
+    ![스크린샷 2025-02-11 오후 11.08.24.png](39%20Properties%20of%20the%20Matrix%20Transpose%20(25%E1%84%87%E1%85%AE%E1%86%AB)%201bd029fe18a4806c866acecab5a10f6e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.08.24.png)
+    
+    ![스크린샷 2025-02-11 오후 11.08.36.png](39%20Properties%20of%20the%20Matrix%20Transpose%20(25%E1%84%87%E1%85%AE%E1%86%AB)%201bd029fe18a4806c866acecab5a10f6e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.08.36.png)
+    
+    ![스크린샷 2025-02-11 오후 11.09.26.png](39%20Properties%20of%20the%20Matrix%20Transpose%20(25%E1%84%87%E1%85%AE%E1%86%AB)%201bd029fe18a4806c866acecab5a10f6e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.09.26.png)
+    
+    ![스크린샷 2025-02-11 오후 11.09.38.png](39%20Properties%20of%20the%20Matrix%20Transpose%20(25%E1%84%87%E1%85%AE%E1%86%AB)%201bd029fe18a4806c866acecab5a10f6e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.09.38.png)
+    
+    ```yaml
+    2. Inverse와 Transpose의 관계 :
+    
+    	1. 역행렬 
+    		AA-1 = I 이어야 한다
+    		
+    		
+    		I의 개념이 뭐더라?
+    		
+    		각 차원의 정보
+    		
+    		 [1 2 3] 		[1 0 0]
+    		 [4 5 6]		[0 1 0] 
+    		 [7 8 9]    [0 0 1]
+    	 
+    	 정보 1에서는 1차원 정보만 한번 추출,
+    	 정보 2에서는 2차원 정보만 한번 추출,
+    	 ...
+    	 다른 변환정보의 개입 없이, 딱 해당 차원 정보만 다시 가져오는 것.
+    	 
+    	 1번 정보인
+    	 [1]
+    	 [0]
+    	 [0]
+    	 이라는 정보는 사실, 어떤 의미냐면,
+    	 1번째 정보는 1차원에 대한 것이니까, 1차원에 대한 정보말고 다른건 가져오지마세요.
+    	 라는 뜻을 내포하고 있다.
+    	 1번 정보라고 불리는 동시에, 스스로가 1이므로 1차원에 대한 정보임을 내포하고 있음.
+    	 1이므로 1차원에 대한것이다 뭐 이런거.
+    	 
+    	 2. inverse
+    	 
+    	 그럼 뭘 곱해야 I가 나올까?
+    	 
+    	 
+    	
+    		
+    		
+    
+    ```
+    
+    ![스크린샷 2025-02-11 오후 11.46.45.png](39%20Properties%20of%20the%20Matrix%20Transpose%20(25%E1%84%87%E1%85%AE%E1%86%AB)%201bd029fe18a4806c866acecab5a10f6e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2025-02-11_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.46.45.png)
